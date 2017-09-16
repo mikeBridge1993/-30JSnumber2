@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+</head>
+<body>
+  
+    <h1>We kindly ask for your patience. Full Stack Solutions <span class="sup">&reg;</span> will deploy soon.</h1>
+    <div class="clock">
+      <div class="clock-face">
+        <div id="centreball"></div>
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div id="seconds" class="hand second-hand"></div>
+       
+      </div>
+    </div>
+
+    
+    
+
+  <style>
+      
+      
+      #centreball{
+          position: relative;
+          width:5%;
+          height:5%;
+          border-radius: 50%;
+          left:47.5%;
+          top:55%;
+          background-color:black;
+      }
+     
+      
+    .sup { 
+        vertical-align: super;
+      }
+      
+    html {
+      background-color: dimgray;
+      font-family: Ubuntu;
+      text-align: center;
+      font-size: 10px;
+    }
+
+    body {
+      margin: 0;
+      font-size: 2rem;
+      display:flex;
+      flex:1;
+      min-height: 100vh;
+      align-items: center;
+      font-family: Ubuntu;
+    }
+      
+      h1{ 
+          background-color: dimgrey;
+          color: cornsilk;
+          position: absolute;
+          text-align: center;
+          top: 15%;
+          width: 100%;
+          
+      }
+
+    .clock {
+      background-color:white;
+      background-image: url(Clock2.png);
+      background-size:cover;
+      width: 30rem;
+      height: 30rem;
+      border:2px solid white;
+      border-radius: 50%;
+      margin:50px auto;
+      position: relative;
+      padding:2rem;
+      box-shadow:
+        0 0 1 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-25px); /* account for the height of the clock hands */
+    }
+
+    .hand {
+      
+      background-image:url(Pointer9.png);
+      background-size:cover;
+      border-radius: 30px;
+      width:30%;
+      height:50px;
+      position: absolute;
+      left:20%;
+      top:50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.0001 s;
+      
+    }
+      
+      
+    
+
+  </style>
+
+  <script>
+      
+      function setDate(){
+          
+          const now = new Date();
+          
+          //Seconds pointer
+          const seconds = now.getSeconds();
+          var secondsPointer = document.getElementById('seconds');
+          var rotation = 6*seconds+90;
+          secondsPointer.style.transform = 'rotate('+rotation+ 'deg)';
+          
+          
+          //Minutes pointer
+          const minutes = now.getMinutes();
+          var minutesPointer = document.querySelector('.min-hand');
+          var rotation = 6*minutes+90;
+          minutesPointer.style.transform = 'rotate('+rotation+ 'deg)';
+          
+          //Hour pointer
+          const hour = now.getHours();
+          console.log(hour);
+          var hoursPointer = document.querySelector('.hour-hand');
+          var rotation = 30*hour+90;
+          hoursPointer.style.transform = 'rotate('+rotation+ 'deg)';
+      }
+      
+      setInterval(setDate, 1000);
+      
+
+  </script>
+</body>
+</html>
